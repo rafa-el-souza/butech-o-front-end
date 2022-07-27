@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-extraneous-dependencies */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -927,7 +929,10 @@ module.exports = {
     zIndex: {
       auto: 'auto',
       0: '0',
+      2: '2',
+      5: '5',
       10: '10',
+      15: '15',
       20: '20',
       30: '30',
       40: '40',
@@ -952,5 +957,7 @@ module.exports = {
     'active',
     'disabled',
   ],
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 };
