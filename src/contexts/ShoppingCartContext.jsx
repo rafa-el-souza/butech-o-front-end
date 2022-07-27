@@ -21,12 +21,20 @@ export function ShoppingCartProvider({ children }) {
     }
   }, []);
 
-  const insertIntoCart = (product, quantity = 1) => {
-    const newProduct = {
-      ...product,
-      quantity,
-    };
+  const getProduct = (productId) => {
+    let productIndex;
+    const _product = shoppingCart.find((item, index) => {
+      productIndex = index;
+      return item._id === productId;
+    });
 
+    return {
+      productIndex,
+      product: _product,
+    };
+  };
+
+  const insert = (newProduct) => {
     const newShoppingCart = [
       ...shoppingCart,
       newProduct,
@@ -37,12 +45,7 @@ export function ShoppingCartProvider({ children }) {
     setShoppingCart(newShoppingCart);
   };
 
-  const updateCart = (product, newQuantity) => {
-    const newProduct = {
-      ...product,
-      quantity: newQuantity,
-    };
-
+  const update = (newProduct) => {
     const newShoppingCart = shoppingCart.map((item) => {
       if (item._id === newProduct._id) return newProduct;
       return item;
@@ -53,7 +56,7 @@ export function ShoppingCartProvider({ children }) {
     setShoppingCart(newShoppingCart);
   };
 
-  const removeFromCart = (productId) => {
+  const remove = (productId) => {
     const newShoppingCart = shoppingCart.filter((item) => item._id !== productId);
 
     setLocalStorage('shoppingCart', newShoppingCart);
@@ -65,9 +68,10 @@ export function ShoppingCartProvider({ children }) {
     <ShoppingCartContext.Provider
       value={{
         shoppingCart,
-        insertIntoCart,
-        updateCart,
-        removeFromCart,
+        getProduct,
+        insert,
+        update,
+        remove,
       }}
     >
       {children}
