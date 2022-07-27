@@ -3,3 +3,81 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@layer components {
+  .menu-category-title {
+    @apply h-16 pl-8 pt-3 bg-gradient-to-l from-indigo-400 to-teal-400 text-2xl font-bold text-gray-100 lowercase tracking-widest
+  }
+
+  .search-category {
+    @apply px-4 m-1 text-white border-0 rounded-lg bg-cyan-500 text-sm lowercase align-middle font-semibold antialiased tracking-wider drop-shadow-md;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .search-by-category::-webkit-scrollbar {
+    display: none;
+  }
+
+  .search-by-category {
+    @apply overflow-x-scroll whitespace-nowrap flex rounded-xl
+  }
+
+  .menu-search-bar {
+    @apply h-10 mt-2 mb-1 sticky top-3 flex
+  }
+
+  .menu-logo {
+    @apply w-20 bg-slate-100 absolute top-24 left-5 rounded-xl drop-shadow-md
+  }
+
+  .menu-open-closed {
+    @apply px-3 py-1 absolute right-4 top-20 text-gray-200 bg-green-600 rounded-md lowercase drop-shadow-md align-middle font-semibold antialiased tracking-wide text-sm
+  }
+
+  .menu-title {
+    @apply absolute text-gray-200 left-28 top-32 align-middle font-bold antialiased tracking-wider text-3xl
+  }
+
+  .menu-background-photo {
+    @apply w-screen h-44 bg-gradient-to-r from-indigo-500 to-teal-300 -z-10
+  }
+
+  .menu-product {
+    @apply h-20 my-4 flex flex-row justify-between text-gray-600
+  }
+
+  .menu-product-photo {
+    @apply h-16 w-16 ml-4 bg-slate-400 rounded-md drop-shadow-md -z-10
+  }
+
+  .menu-product-info {
+    @apply w-24 flex flex-col
+  }
+
+  .menu-product-name {
+    @apply w-24 text-sm font-medium antialiased
+  }
+
+  .menu-product-description {
+    @apply w-24 text-xs font-light antialiased align-middle
+  }
+
+  .menu-product-price {
+    @apply mt-1 mr-6 text-xs font-bold antialiased
+  }
+
+  .search-by-keyword-container {
+    @apply mx-3 w-36 h-9 border-0 rounded-lg flex opacity-50
+  }
+
+  .search-by-keyword-form {
+    @apply w-36 h-9 border-0 rounded-lg flex opacity-50
+  }
+
+  .search-by-keyword-input {
+    @apply w-36 h-9 border-0 rounded-lg opacity-50 bg-gray-200
+  }
+}
