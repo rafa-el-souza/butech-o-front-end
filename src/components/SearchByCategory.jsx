@@ -1,22 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
-import useCategories from '../hooks/useCategories';
+import useCategoriesProducts from '../hooks/useCategoriesProducts';
+import SearchCategory from './SearchCategory';
 
 function SearchByCategory() {
-  const categories = useCategories();
+  const { categories } = useCategoriesProducts();
 
-  const myRef = useRef(null);
-
-  const executeScroll = () => myRef.current.scrollIntoView();
   return (
-    <span>
+    <span
+      className="search-by-category"
+    >
       {categories.map((category) => (
-        <button
-          type="button"
-          onClick={executeScroll}
-        >
-          {category.nome}
-        </button>
+        <SearchCategory category={category} key={category} />
       ))}
     </span>
   );
