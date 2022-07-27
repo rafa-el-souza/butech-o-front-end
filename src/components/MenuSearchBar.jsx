@@ -3,7 +3,7 @@ import React from 'react';
 
 function MenuSearchBar({ children }) {
   return (
-    <section>{children}</section>
+    <section className="menu-search-bar">{children}</section>
   );
 }
 
