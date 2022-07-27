@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function MenuBackgroundPhoto({ bgPhotoURL, className }) {
+function MenuBackgroundPhoto({ className }) {
   return (
-    <img
-      src={bgPhotoURL}
-      alt="Foto da empresa. Adicionar descrição específica."
+    <div
       className={className}
+      alt="Foto da empresa. Adicionar descrição específica."
     />
   );
 }
