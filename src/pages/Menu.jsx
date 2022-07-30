@@ -1,42 +1,64 @@
 import React from 'react';
 
-import MenuHeader from '../components/MenuHeader';
-import MenuLogo from '../components/MenuLogo';
-import MenuOpenClosed from '../components/MenuOpenClosed';
-import MenuTitle from '../components/MenuTitle';
-import MenuBackgroundPhoto from '../components/MenuBackgroundPhoto';
-import MenuSearchBar from '../components/MenuSearchBar';
-import SearchByCategory from '../components/SearchByCategory';
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
+import CategoryList from '../components/CategoryList';
+import CartTotal from '../components/CartTotal';
+import ScrollToCategories from '../components/ScrollToCategories';
 import SearchByKeyword from '../components/SearchByKeyword';
-import MenuCategoryList from '../components/MenuCategoryList';
+import Logo from '../components/Logo';
+import OpenClosed from '../components/OpenClosed';
+import Title from '../components/Title';
+// import BackgroundPhoto from '../components/BackgroundPhoto';
+
+import useCategoriesProducts from '../hooks/useCategoriesProducts';
 
 function Menu() {
+  const { categories, products } = useCategoriesProducts();
+
   return (
-    <main>
-      <MenuHeader>
-        <MenuLogo
+    <main className="menu">
+      <Header
+        classnames={['menu-header']}
+      >
+        <Logo
           className="menu-logo"
           logoURL="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png"
+          alt="Logomarca da empresa. Adicionar descrição específica."
         />
-        <MenuOpenClosed
+        <OpenClosed
           className="menu-open-closed"
         />
-        <MenuTitle
+        <Title
           className="menu-title"
           title="butech-o"
         />
-        <MenuBackgroundPhoto
+        {/* <BackgroundPhoto
           className="menu-background-photo"
-          bgPhotoURL="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg"
+          bgPhotoURL="https://img.freepik.com/premium-photo/martini-cocktail-drink-with-ice-cubes-neon-iridescent-pink-blue-colors-minimal-night-party-life-juzz-concept-background-painted-with-light_114309-3854.jpg?w=1060"
+        /> */}
+      </Header>
+      <div className="h-full w-screen absolute bg-white -z-[1]" />
+      <SearchBar
+        classnames={['menu-search-bar']}
+      >
+        <SearchByKeyword
+          classnames={['search-by-keyword-container', 'search-by-keyword-form', 'search-by-keyword-input']}
         />
-      </MenuHeader>
+        <ScrollToCategories
+          classnames={['search-by-category']}
+          scrollToCategoriesClassnames={['search-category']}
+        />
+      </SearchBar>
 
-      <MenuSearchBar>
-        <SearchByKeyword />
-        <SearchByCategory />
-      </MenuSearchBar>
+      <CategoryList
+        categories={categories}
+        products={products}
+        categoryClassnames={['menu-category-title']}
+        productClassnames={['menu-product', 'menu-product-photo', 'menu-product-info', 'menu-product-name', 'menu-product-description', 'menu-product-price']}
+      />
 
-      <MenuCategoryList />
+      <CartTotal />
     </main>
   );
 }

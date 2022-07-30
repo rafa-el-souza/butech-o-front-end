@@ -929,6 +929,7 @@ module.exports = {
     zIndex: {
       auto: 'auto',
       0: '0',
+      1: '1',
       2: '2',
       5: '5',
       10: '10',

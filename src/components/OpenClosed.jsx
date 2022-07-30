@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-function MenuOpenClosed({ className }) {
+function OpenClosed({ className }) {
   const [open] = useState(true);
 
   // useEffect making request to server to setOpen
@@ -11,4 +11,4 @@ function MenuOpenClosed({ className }) {
   );
 }
 
-export default MenuOpenClosed;
+export default OpenClosed;

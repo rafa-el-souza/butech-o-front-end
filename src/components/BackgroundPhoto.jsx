@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function MenuBackgroundPhoto({ className }) {
+function BackgroundPhoto({ className, bgPhotoURL }) {
   return (
-    <div
+    <img
       className={className}
+      src={bgPhotoURL}
       alt="Foto da empresa. Adicionar descrição específica."
     />
   );
 }
 
-export default MenuBackgroundPhoto;
+export default BackgroundPhoto;

@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function MenuLogo({ logoURL, className }) {
+function Logo({ logoURL, className, alt }) {
   return (
     <img
       src={logoURL}
-      alt="Logomarca da empresa. Adicionar descrição específica."
+      alt={alt}
       className={className}
     />
   );
 }
 
-export default MenuLogo;
+export default Logo;
