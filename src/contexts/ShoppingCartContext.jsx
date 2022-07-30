@@ -9,6 +9,8 @@ const ShoppingCartContext = createContext([]);
 export function ShoppingCartProvider({ children }) {
   const [shoppingCart, setShoppingCart] = useState([]);
 
+  const [categories, setCategories] = useState([]);
+
   const firstRender = useRef(true);
 
   useEffect(() => {
@@ -20,6 +22,15 @@ export function ShoppingCartProvider({ children }) {
       }
     }
   }, []);
+
+  useEffect(() => {
+    const extractedCategories = shoppingCart
+      .map((product) => product.categoria);
+
+    const uniqueCategories = [...new Set(extractedCategories)];
+
+    setCategories(uniqueCategories);
+  }, [shoppingCart]);
 
   const getProduct = (productId) => {
     let productIndex;
@@ -34,7 +45,17 @@ export function ShoppingCartProvider({ children }) {
     };
   };
 
-  const insert = (newProduct) => {
+  const makeShoppingCartProduct = (product, quantity) => ({
+    ...product,
+    quantity,
+    subTotal: quantity * product.preco,
+  });
+
+  const getTotal = () => shoppingCart.reduce((acc, curr) => acc + curr.subTotal, 0);
+
+  const insert = (product, quantity) => {
+    const newProduct = makeShoppingCartProduct(product, quantity);
+
     const newShoppingCart = [
       ...shoppingCart,
       newProduct,
@@ -45,7 +66,9 @@ export function ShoppingCartProvider({ children }) {
     setShoppingCart(newShoppingCart);
   };
 
-  const update = (newProduct) => {
+  const update = (product, newQuantity) => {
+    const newProduct = makeShoppingCartProduct(product, newQuantity);
+
     const newShoppingCart = shoppingCart.map((item) => {
       if (item._id === newProduct._id) return newProduct;
       return item;
@@ -68,7 +91,9 @@ export function ShoppingCartProvider({ children }) {
     <ShoppingCartContext.Provider
       value={{
         shoppingCart,
+        categories,
         getProduct,
+        getTotal,
         insert,
         update,
         remove,
