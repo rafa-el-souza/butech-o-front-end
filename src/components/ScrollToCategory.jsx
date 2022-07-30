@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function SearchCategory({ category }) {
+function ScrollToCategory({ category, classnames }) {
   return (
     <button
-      className="search-category"
+      className={classnames[0]}
       type="button"
       onClick={() => {
         document.getElementById(`${category}`).scrollIntoView({ behavior: 'smooth' });
@@ -15,4 +15,4 @@ function SearchCategory({ category }) {
   );
 }
 
-export default SearchCategory;
+export default ScrollToCategory;

@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-function SearchByKeyword() {
+function SearchByKeyword({ classnames }) {
   return (
-    <span className="search-by-keyword-container">
-      <form className="search-by-keyword-form">
+    <span className={classnames[0]}>
+      <form className={classnames[1]}>
         <input
-          className="search-by-keyword-input"
+          className={classnames[2]}
           type="text"
           name=""
           id=""

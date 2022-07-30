@@ -5,28 +5,20 @@
 @tailwind utilities;
 
 @layer components {
-  .menu-category-title {
-    @apply h-16 pl-8 pt-3 bg-gradient-to-l from-indigo-400 to-teal-400 text-2xl font-bold text-gray-100 lowercase tracking-widest
+  /* .App {
+    @apply flex
+  } */
+
+  .menu {
+    @apply w-screen relative
   }
 
-  .search-category {
-    @apply px-4 m-1 text-white border-0 rounded-lg bg-cyan-500 text-sm lowercase align-middle font-semibold antialiased tracking-wider drop-shadow-md;
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+  .menu-header {
+    @apply h-48 relative bg-gradient-to-r from-indigo-500 to-teal-300 -z-30
   }
 
-  .search-by-category::-webkit-scrollbar {
-    display: none;
-  }
-
-  .search-by-category {
-    @apply overflow-x-scroll whitespace-nowrap flex rounded-xl
-  }
-
-  .menu-search-bar {
-    @apply h-10 mt-2 mb-1 sticky top-3 flex
+  .menu-background-photo {
+    /* @apply max-w-4xl */
   }
 
   .menu-logo {
@@ -41,8 +33,40 @@
     @apply absolute text-gray-200 left-28 top-32 align-middle font-bold antialiased tracking-wider text-3xl
   }
 
-  .menu-background-photo {
-    @apply w-screen h-44 bg-gradient-to-r from-indigo-500 to-teal-300 -z-10
+  .menu-category-title {
+    @apply h-16 pl-8 pt-3 bg-gradient-to-l from-indigo-400 to-teal-400 text-2xl font-bold text-gray-100 lowercase tracking-widest
+  }
+
+  .menu-search-bar {
+    @apply h-10 mt-0 mb-0 sticky top-4 flex z-[30]
+  }
+
+  .search-category {
+    @apply px-4 my-1 mx-1 text-white border-0 rounded-lg bg-cyan-500 text-sm lowercase align-middle font-semibold antialiased tracking-wider drop-shadow-md;
+  }
+
+  .search-by-category {
+    @apply overflow-x-scroll whitespace-nowrap flex rounded-xl;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .search-by-category::-webkit-scrollbar {
+    display: none;
+  }
+
+  .search-by-keyword-container {
+    @apply mx-3 w-40 h-10 border-0 rounded-lg flex opacity-50
+  }
+
+  .search-by-keyword-form {
+    @apply w-40 h-10 border-0 rounded-lg flex opacity-50
+  }
+
+  .search-by-keyword-input {
+    @apply w-40 h-10 border-0 rounded-lg opacity-50 bg-gray-200
   }
 
   .menu-product {
@@ -50,11 +74,11 @@
   }
 
   .menu-product-photo {
-    @apply h-16 w-16 ml-4 bg-slate-400 rounded-md drop-shadow-md -z-10
+    @apply h-16 w-16 ml-4 bg-slate-400 rounded-md drop-shadow-md
   }
 
   .menu-product-info {
-    @apply w-24 flex flex-col
+    @apply w-24 pt-1 flex flex-col
   }
 
   .menu-product-name {
@@ -66,18 +90,6 @@
   }
 
   .menu-product-price {
-    @apply mt-1 mr-6 text-xs font-bold antialiased
-  }
-
-  .search-by-keyword-container {
-    @apply mx-3 w-36 h-9 border-0 rounded-lg flex opacity-50
-  }
-
-  .search-by-keyword-form {
-    @apply w-36 h-9 border-0 rounded-lg flex opacity-50
-  }
-
-  .search-by-keyword-input {
-    @apply w-36 h-9 border-0 rounded-lg opacity-50 bg-gray-200
+    @apply pt-5 mr-9 text-xs font-bold antialiased
   }
 }
