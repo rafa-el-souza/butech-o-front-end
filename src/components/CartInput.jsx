@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/solid';
 
 import useShoppingCart from '../hooks/useShoppingCart';
@@ -11,27 +11,28 @@ function CartInput({ product }) {
     insert, update, remove, getProduct, shoppingCart,
   } = useShoppingCart();
 
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      const { product: _product } = getProduct(product._id);
+      if (_product) setQuantity(_product.quantity);
+    }
+  }, []);
+
   const insertIntoCart = (_quantity = 1) => {
     setQuantity(_quantity);
-    const newProduct = {
-      ...product,
-      quantity: _quantity,
-    };
-    insert(newProduct);
+    insert(product, _quantity);
   };
 
   const updateCart = (newQuantity) => {
-    const newProduct = {
-      ...product,
-      quantity: newQuantity,
-    };
     setQuantity(newQuantity);
-    update(newProduct);
+    update(product, newQuantity);
   };
 
   const removeFromCart = (productId) => {
-    remove(productId);
     setQuantity(0);
+    remove(productId);
   };
 
   const handleChange = ({ target }) => {
@@ -57,8 +58,7 @@ function CartInput({ product }) {
   const handleRemove = () => {
     const { product: _product, productIndex } = getProduct(product._id);
     if (_product) {
-      console.log(shoppingCart[productIndex].quantity);
-      if (shoppingCart[productIndex].quantity > 1) {
+      if (shoppingCart[productIndex].quantity > 1 && quantity > 0) {
         const newQuantity = quantity - 1;
         updateCart(newQuantity);
       } else {
@@ -68,25 +68,23 @@ function CartInput({ product }) {
   };
 
   return (
-    <span className="w-16 h-12 relative top-2 right-4 rounded-xl bg-slate-100 border-0 z-2">
-      <div className="w-16 h-12 rounded-xl bg-slate-100 border-0">
-        <form
-          className="w-16 h-12 rounded-xl bg-slate-100 border-0"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <input
-            className="w-16 h-12 rounded-xl bg-slate-100 border-0"
-            type="number"
-            min="0"
-            value={quantity}
-            onChange={handleChange}
-          />
-        </form>
-      </div>
+    <span className="w-10 h-12 relative top-1 right-6 rounded-xl bg-slate-100 border-0">
+      <form
+        className="w-10 h-12 rounded-xl bg-slate-100 border-0"
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <input
+          className="w-10 h-12 relative left-[8px] rounded-xl bg-slate-100 border-0 antialiased"
+          type="number"
+          min="0"
+          value={quantity}
+          onChange={handleChange}
+        />
+      </form>
       <button
-        className="w-5 h-5 relative -top-4 rounded-sm bg-emerald-500 align-middle text-teal-100"
+        className="w-5 h-5 relative -top-3 rounded-sm bg-emerald-500 align-middle text-teal-100"
         type="button"
         onClick={handleAdd}
       >
@@ -94,7 +92,7 @@ function CartInput({ product }) {
         <PlusIcon />
       </button>
       <button
-        className="w-5 h-5 relative -top-4 -right-6 rounded-sm bg-red-400 align-middle text-teal-100"
+        className="w-5 h-5 relative -top-3 -right-2 rounded-sm bg-red-400 align-middle text-teal-100"
         type="button"
         onClick={handleRemove}
       >
