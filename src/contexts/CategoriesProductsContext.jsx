@@ -100,7 +100,7 @@ export function CategoriesProductsProvider({ children }) {
 
         setProducts(productsFromDb);
 
-        const extractedCategories = productsFromDb
+        const extractedCategories = productsFromDb // código duplicado
           .map((product) => product.categoria);
 
         const uniqueCategories = [...new Set(extractedCategories)];
